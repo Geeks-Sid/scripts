@@ -3,10 +3,11 @@ import argparse
 import nibabel as nib
 from tqdm import tqdm
 import numpy as np
-import time
 
 def main():
     print("Parsing Arguments...")
+
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "-input_dir",
@@ -34,3 +35,6 @@ def main():
     	nib.save(to_save_nib, to_save_path)
 
     print("Finished.")
+
+if __name__ == "__main__":
+    main()

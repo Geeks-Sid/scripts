@@ -4,6 +4,7 @@ import nibabel as nib
 from tqdm import tqdm
 import numpy as np
 
+
 def main():
     print("Parsing Arguments...")
 
@@ -27,14 +28,15 @@ def main():
     print("Converting...")
 
     for patient in tqdm(patients):
-    	mask_path = os.path.join(base_dir, patient, patient+'_seg.nii.gz')
-    	to_save_path = os.path.join(base_dir, patient, patient+'_wt.nii.gz')
-    	mask_nib = nib.load(mask_path)
-    	mask_data = (mask_nib.get_fdata() > 0).astype(np.int8)
-    	to_save_nib = nib.Nifti1Image(mask_data, affine=mask_nib.affine)
-    	nib.save(to_save_nib, to_save_path)
+        mask_path = os.path.join(base_dir, patient, patient + "_seg.nii.gz")
+        to_save_path = os.path.join(base_dir, patient, patient + "_wt.nii.gz")
+        mask_nib = nib.load(mask_path)
+        mask_data = (mask_nib.get_fdata() > 0).astype(np.int8)
+        to_save_nib = nib.Nifti1Image(mask_data, affine=mask_nib.affine)
+        nib.save(to_save_nib, to_save_path)
 
     print("Finished.")
+
 
 if __name__ == "__main__":
     main()
